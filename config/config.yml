@@ -1,0 +1,38 @@
+before_filter:
+  white_list:
+    host: [firstp2p, zhongchou]
+  black_list:
+    user-agent: [ ChinaCache ]
+    
+
+word_alert:
+  word:
+    all: [sqlmap]
+    #referer: [firstp2p]
+    url: [wp-login.php]
+
+src_ip_group_alert:
+  common:
+    win_time : 5
+    min_request_count : 20
+  response_status:
+    below:
+      #200 : 10
+    above:
+      404 : 90
+  request_frequency:
+    above: 3000
+
+request_url_group_alert:
+  common:
+    win_time : 480
+    min_request_count : 1
+  min_ip_count : 1
+  white_list:
+    real_url: [\.\w+$]
+  black_list:
+    real_url: [\.gif$, \.js$, \.css$, \.shtml$, \.jpg$, \.png$, \.ico$, \.html$, \.jpeg$, \.woff$, \.eot$, \.svg$]
+ 
+alert_output:
+  win_time : 30
+  alert_time : [1,3,5,10,30,50,100,300,500,1000,3000,5000,10000] 
